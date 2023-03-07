@@ -1,0 +1,46 @@
+const daysPerWeek = parseInt(prompt("How many days per week do you exercise?"));
+const minutesPerDay = parseInt(prompt("How many minutes do you spend on a workout?"));
+const intensity = parseInt(prompt("What level of intensity do you want for your workouts? (from 1 to 10)"));
+
+const totalMinutes = daysPerWeek * minutesPerDay;
+const load = totalMinutes * intensity;
+
+let recommendations = "";
+if (load < 1000) {
+  recommendations = "We recommend focusing on basic exercises such as squats, bench press, and pull-ups.";
+} else if (load < 2000) {
+  recommendations = "We recommend adding endurance exercises such as running or cycling to your training routine.";
+} else {
+  recommendations = "We recommend focusing on strength and endurance exercises, such as high-rep sets and supersets.";
+}
+
+console.log(`You exercise ${daysPerWeek} days per week, spend ${minutesPerDay} minutes on a workout, and want a training intensity level of ${intensity}.`);
+console.log(`You are training for ${load} minutes per week.`);
+console.log(recommendations);
+
+const previousWorkouts = [
+  { exercise: 'Bench press', weight: 80, reps: 10 },
+  { exercise: 'Squats', weight: 100, reps: 8 },
+  { exercise: 'Deadlift', weight: 60, reps: 12 }
+];
+
+let totalLoad = 0;
+for (let i = 0; i < previousWorkouts.length; i++) {
+  totalLoad += previousWorkouts[i].weight * previousWorkouts[i].reps;
+}
+
+const averageLoad = totalLoad / previousWorkouts.length;
+
+const targetLoad = averageLoad * 1.1; 
+const exercises = ['Bench press', 'Squats', 'Deadlift'];
+const recommendedExercises = [];
+for (let i = 0; i < exercises.length; i++) {
+  const exerciseLoad = targetLoad / 3;
+  const recommendedExercise = { exercise: exercises[i], weight: exerciseLoad, reps: 10 };
+  recommendedExercises.push(recommendedExercise);
+}
+
+console.log('Previous workouts:', previousWorkouts);
+console.log('Average load:', averageLoad);
+console.log('Recommended exercises:');
+console.log(recommendedExercises);
